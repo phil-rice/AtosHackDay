@@ -27,8 +27,11 @@ construction and pipeline were the data tables provided by the customer
 As this story is about 'what's changed' we created pipeline1 and customer1, these are copies with only manual minor changes
 idandcpd and idandcpd1 were a one to many lookup from notice id to cpd value. These weren't used in the end
 
-Result: 
-All line number references are for file DeltaCalculator
+Using the code:
+(All line number references are for file DeltaCalculator)
+
+Set up your database details in DataSources
+Populate a mysql database using the sql in database.sql
 Set the destination file name in line 57 (currently points to my desk top)
 Set the xml for the customer around line 90
 Set the list of new notices in line 113
