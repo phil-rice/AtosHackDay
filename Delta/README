@@ -1,0 +1,35 @@
+
+
+Story:
+
+As a business owner, 
+in order to win new business, 
+I want to find out what new opportunities have been posted and what has changed on the existing opportunities that I am interested in. 
+These are based upon my saved preferences
+
+What the code does:
+The code reads in a customer record (actually declared in XML in the code) which holds information about a person, and the notices that person is interested in
+In addition to that there are a couple of notice ids that 'some other clever software' has identified as being of interest to this person
+The pipeline table is compared to pipeline1. (this is saying 'last <time period> table' compared to 'this table), for the notices that the person is interested in. 
+  This comparison identifies the fields that have changed (which field, old value and new value)   
+An email is composed from the data available. The template for this is in email.st and the language used is http://www.stringtemplate.org/ 
+
+Programming style:
+This is a 'spike', as per http://www.extremeprogramming.org/rules/spike.html.
+The purpose of it was to explore ways of meeting the story, understand the story better, and refine our understanding of the story with the customer
+The code was written mostly functionally rather than Object Orientated, mostly maps are used to store data. This trades type integrity for very rapid ability to change
+In practice it actually got too complex to easily change, and needs refactoring even for spike level software
+As it is focusing on user requirement understanding, and the end product, no effort at all was given to security issues, or appropriate ways of implementing the database code efficiently
+
+Database:
+database.sql holds the sql to create the database. It has several 'new tables' over those given to us. 
+construction and pipeline were the data tables provided by the customer
+As this story is about 'what's changed' we created pipeline1 and customer1, these are copies with only manual minor changes
+idandcpd and idandcpd1 were a one to many lookup from notice id to cpd value. These weren't used in the end
+
+Result: 
+All line number references are for file DeltaCalculator
+Set the destination file name in line 57 (currently points to my desk top)
+Set the xml for the customer around line 90
+Set the list of new notices in line 113
+Run the main method in DeltaCalculator and that file is populated with an email 
